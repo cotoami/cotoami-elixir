@@ -1,0 +1,17 @@
+machine:
+  services:
+    - docker
+  environment:
+    IMAGE_NAME: "cotoami/cotoami-elixir:latest"
+
+test:
+  override:
+    - docker info
+
+deployment:
+  release:
+    branch: master
+    commands:
+      - docker build --rm=false -t $IMAGE_NAME .
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push $IMAGE_NAME
