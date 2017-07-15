@@ -2,7 +2,7 @@ machine:
   services:
     - docker
   environment:
-    IMAGE_NAME: "cotoami/cotoami-elixir:latest"
+    IMAGE_NAME: "cotoami/cotoami-elixir:1.4.5"
 
 test:
   override:
