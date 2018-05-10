@@ -24,8 +24,8 @@ RUN curl -o /tmp/erlang.deb http://packages.erlang-solutions.com/erlang-solution
 
 RUN apt-cache show esl-erlang && apt-cache show elixir
 
-RUN apt-get install -y esl-erlang=1:20.0 && \
-    apt-get install -y elixir=1.4.5-1 && \
+RUN apt-get install -y esl-erlang=1:20.2.2 && \
+    apt-get install -y elixir=1.6.4-1 && \
     apt-get clean -y
 
 RUN mix local.hex --force && mix local.rebar --force
