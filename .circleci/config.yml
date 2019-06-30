@@ -7,10 +7,10 @@ jobs:
       IMAGE_NAME: "cotoami/cotoami-elixir:1.7"
     steps:
       - setup_remote_docker
-    - run:
+      - run:
           name: Build docker image
           command: docker build --rm=false -t $IMAGE_NAME .
-    - run:
+      - run:
           name: Release docker images
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
