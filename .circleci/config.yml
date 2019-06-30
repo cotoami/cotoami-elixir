@@ -9,7 +9,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build docker image
-          command: docker build --rm=false -t $IMAGE_NAME .
+          command: docker build -t $IMAGE_NAME .
       - run:
           name: Release docker images
           command: |
