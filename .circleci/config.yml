@@ -3,9 +3,11 @@ jobs:
   build:
     docker:
       - image: docker:17.06
+    working_directory: ~/cotoami
     environment:
       IMAGE_NAME: "cotoami/cotoami-elixir:1.7"
     steps:
+      - checkout
       - setup_remote_docker
       - run:
           name: Build docker image
