@@ -24,7 +24,7 @@ RUN curl -o /tmp/erlang.deb http://packages.erlang-solutions.com/erlang-solution
 
 RUN apt-cache show esl-erlang && apt-cache show elixir
 
-RUN apt-get install -y esl-erlang=1:20.2.2 && \
+RUN apt-get install -y esl-erlang=1:20.3.8.21-1 && \
     apt-get install -y elixir=1.7.4-1 && \
     apt-get clean -y
 
