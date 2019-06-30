@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:17.06
+    environment:
+      IMAGE_NAME: "cotoami/cotoami-elixir:1.7"
+    steps:
+      - setup_remote_docker
+    - run:
+          name: Build docker image
+          command: docker build --rm=false -t $IMAGE_NAME .
+    - run:
+          name: Release docker images
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push $IMAGE_NAME
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
