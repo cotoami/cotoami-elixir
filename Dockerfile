@@ -13,8 +13,8 @@ ENV LC_ALL ja_JP.UTF-8
 
 # Node.js
 RUN apt-get -y install rlwrap && \
-    curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
-    apt-get install -y nodejs
+    curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
+    apt-get install -y --force-yes nodejs
 
 # Erlang and Elixir
 RUN curl -o /tmp/erlang.deb http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
