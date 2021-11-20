@@ -12,9 +12,11 @@ ENV LANGUAGE ja_JP:ja
 ENV LC_ALL ja_JP.UTF-8
 
 # Node.js
-RUN apt-get -y install rlwrap && \
-    curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-    apt-get install -y --force-yes nodejs
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash && \
+    . $HOME/.nvm/nvm.sh && \
+    nvm install v10.16.0 && \
+    nvm alias default v10.16.0 && \
+    npm install -g yarn
 
 # Erlang and Elixir
 RUN curl -o /tmp/erlang.deb http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
