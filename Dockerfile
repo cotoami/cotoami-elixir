@@ -12,11 +12,17 @@ ENV LANGUAGE ja_JP:ja
 ENV LC_ALL ja_JP.UTF-8
 
 # Node.js
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash && \
-    . $HOME/.nvm/nvm.sh && \
-    nvm install v10.16.0 && \
-    nvm alias default v10.16.0 && \
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 10.16.0
+RUN mkdir -p $NVM_DIR && \
+    curl --silent -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash && \
+    . $NVM_DIR/nvm.sh && \
+    nvm install $NODE_VERSION && \
+    nvm alias default $NODE_VERSION && \
+    nvm use default && \
     npm install -g yarn
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 # Erlang and Elixir
 RUN curl -o /tmp/erlang.deb http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
@@ -24,7 +30,8 @@ RUN curl -o /tmp/erlang.deb http://packages.erlang-solutions.com/erlang-solution
     rm -rf /tmp/erlang.deb && \
     apt-get update -q
 
-RUN apt-cache show esl-erlang && apt-cache show elixir
+# Uncomment the following line if you want to check out the available packages in erlang/elixir
+# RUN apt-cache show esl-erlang && apt-cache show elixir
 
 RUN apt-get install -y esl-erlang=1:20.3.8.21-1 && \
     apt-get install -y elixir=1.7.4-1 && \
