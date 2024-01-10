@@ -34,7 +34,7 @@ RUN curl -o /tmp/erlang.deb https://packages.erlang-solutions.com/erlang-solutio
 # RUN apt-cache show esl-erlang && apt-cache show elixir
 
 RUN apt-get install -y esl-erlang=1:22.3.4.9-1 && \
-    apt-get install -y elixir=1.9.1.dfsg-1.3 && \
+    apt-get install -y elixir=1.10.4-1 && \
     apt-get clean -y
 
 RUN mix local.hex --force && mix local.rebar --force

@@ -3,7 +3,7 @@ jobs:
   build:
     machine: true
     environment:
-      IMAGE_NAME: "cotoami/cotoami-elixir:1.9-focal"
+      IMAGE_NAME: "cotoami/cotoami-elixir:1.10-focal"
     steps:
       - checkout
       - run:
