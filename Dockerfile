@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -25,7 +25,7 @@ ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 # Erlang and Elixir
-RUN curl -o /tmp/erlang.deb http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
+RUN curl -o /tmp/erlang.deb https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && \
     dpkg -i /tmp/erlang.deb && \
     rm -rf /tmp/erlang.deb && \
     apt-get update -q
@@ -33,8 +33,8 @@ RUN curl -o /tmp/erlang.deb http://packages.erlang-solutions.com/erlang-solution
 # Uncomment the following line if you want to check out the available packages in erlang/elixir
 # RUN apt-cache show esl-erlang && apt-cache show elixir
 
-RUN apt-get install -y esl-erlang=1:20.3.8.21-1 && \
-    apt-get install -y elixir=1.7.4-1 && \
+RUN apt-get install -y esl-erlang=1:22.3.4.9-1 && \
+    apt-get install -y elixir=1.9.1.dfsg-1.3 && \
     apt-get clean -y
 
 RUN mix local.hex --force && mix local.rebar --force
